@@ -15,5 +15,6 @@ $container['errorHandler'] = function ($c) {
 };
 
 $app->get('/currencies', \CurrencyExchangeExample\Controller\CurrencyController::class . ':getCurrencies');
+$app->get('/exchange', \CurrencyExchangeExample\Controller\CurrencyController::class . ':exchange');
 
 $app->run();

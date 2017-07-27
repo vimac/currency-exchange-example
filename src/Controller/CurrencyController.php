@@ -15,4 +15,8 @@ class CurrencyController
         throw new Exception();
     }
 
+    public function exchange(Request $request, Response $response)
+    {
+        throw new Exception();
+    }
 }
