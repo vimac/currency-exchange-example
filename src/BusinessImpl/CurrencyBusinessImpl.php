@@ -4,15 +4,18 @@
 namespace CurrencyExchangeExample\BusinessImpl;
 
 
-class CurrencyBusinessImpl
+use CurrencyExchangeExample\Lib\Injectable;
+
+class CurrencyBusinessImpl extends Injectable
 {
 
-    public function getCurrencies()
+
+    public function getCurrencies($page)
     {
 
     }
 
-    public function exchange($fromCurrency, $fromValue, $toCurrency, $toValue)
+    public function exchange($fromCurrency, $fromValue, $toCurrency)
     {
 
     }

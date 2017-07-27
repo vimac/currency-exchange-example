@@ -13,6 +13,7 @@ $container['errorHandler'] = function ($c) {
         ]);
     };
 };
+require __DIR__ . '/../resource/config/dependencies.php';
 
 $app->get('/currencies', \CurrencyExchangeExample\Controller\CurrencyController::class . ':getCurrencies');
 $app->get('/exchange', \CurrencyExchangeExample\Controller\CurrencyController::class . ':exchange');
