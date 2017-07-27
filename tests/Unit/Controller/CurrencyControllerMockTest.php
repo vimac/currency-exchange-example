@@ -6,14 +6,13 @@ namespace CurrencyExchangeExample\Tests\Unit\Controller;
 
 use CurrencyExchangeExample\BusinessImpl\CurrencyBusinessImpl;
 use CurrencyExchangeExample\Controller\CurrencyController;
-use Exception;
 use PHPUnit\Framework\TestCase;
 use Slim\Container;
 use Slim\Http\Environment;
 use Slim\Http\Request;
 use Slim\Http\Response;
 
-class CurrencyControllerTest extends TestCase
+class CurrencyControllerMockTest extends TestCase
 {
     protected function makeBaseRequest()
     {
@@ -83,38 +82,6 @@ class CurrencyControllerTest extends TestCase
         $responseJson = json_decode($responseBody->getContents(), true);
 
         $this->assertEquals($stubExpectReturn, $responseJson['data']);
-    }
-
-    public function getCurrenciesExceptionRequestProvider()
-    {
-        $baseRequest = $this->makeBaseRequest();
-        return [
-            [
-                $baseRequest->withQueryParams(['page' => -1]),
-                new Response
-            ],
-            [
-                $baseRequest->withQueryParams(['page' => 'hello']),
-                new Response
-            ],
-            [
-                $baseRequest->withQueryParams(['page' => null]),
-                new Response
-            ],
-        ];
-    }
-
-    /**
-     * @param Request $request
-     * @param Response $response
-     * @expectedException Exception
-     * @dataProvider getCurrenciesExceptionRequestProvider
-     */
-    public function testGetCurrenciesException(Request $request, Response $response)
-    {
-        $container = new Container();
-        $controller = new CurrencyController($container);
-        $controller->getCurrencies($request, $response);
     }
 
 }

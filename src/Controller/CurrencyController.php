@@ -47,7 +47,8 @@ class CurrencyController extends Injectable
             throw new Exception('to参数不合法');
         }
 
-        $bizImpl = new CurrencyBusinessImpl();
+        /** @var CurrencyBusinessImpl $bizImpl */
+        $bizImpl = $this->getContainer()->get('currencyBizImpl');
         $toValue = $bizImpl->exchange($from, $fromValue, $to);
 
         return $response->withJson([
