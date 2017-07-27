@@ -64,11 +64,14 @@ class CurrencyControllerMockTest extends TestCase
      */
     public function testGetCurrencies(Request $request, Response $response, array $stubExpectReturn = null)
     {
-        $stub = $this->createMock(CurrencyBusinessImpl::class);
-        $stub->method('getCurrencies')->willReturn($stubExpectReturn);
+        $mock = $this->createMock(CurrencyBusinessImpl::class);
+        $mock->expects($this->once())
+            ->method('getCurrencies')
+            ->with()->willReturn($stubExpectReturn);
+
 
         $container = new Container();
-        $container['currencyBizImpl'] = $stub;
+        $container['currencyBizImpl'] = $mock;
 
         $controller = new CurrencyController($container);
 
