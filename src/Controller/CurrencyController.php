@@ -40,7 +40,7 @@ class CurrencyController extends Injectable
         if (!is_string($from) or strlen($from) >= 4 or strlen($from) < 3) {
             throw new Exception('from参数不合法');
         }
-        if (!is_numeric($fromValue) or $fromValue < 0) {
+        if (!is_numeric($fromValue) or $fromValue <= 0) {
             throw new Exception('fromValue参数不合法');
         }
         if (!is_string($to) or strlen($to) >= 4 or strlen($to) < 3) {
@@ -56,6 +56,31 @@ class CurrencyController extends Injectable
             'msg' => 'ok',
             'data' => [
                 'toValue' => $toValue
+            ]
+        ]);
+    }
+
+    public function append(Request $request, Response $response)
+    {
+        $name = $request->getParam('name');
+        $base = $request->getParam('base');
+
+        if (!is_string($name) or strlen($name) >= 4 or strlen($name) < 3) {
+            throw new Exception('不合法的name');
+        }
+        if (!is_numeric($base) or $base <= 0) {
+            throw new Exception('不合法的base');
+        }
+
+        /** @var CurrencyBusinessImpl $bizImpl */
+        $bizImpl = $this->getContainer()->get('currencyBizImpl');
+        $result = $bizImpl->append($name, $base);
+
+        return $response->withJson([
+            'code' => 0,
+            'msg' => 'ok',
+            'data' => [
+                'result' => $result
             ]
         ]);
     }

@@ -15,7 +15,8 @@ class DataProviderTest extends TestCase
         return [
             [1,2,3],
             [2,2,4],
-            [3,3,6]
+            [3,3,6],
+            [4,5,9]
         ];
     }
 

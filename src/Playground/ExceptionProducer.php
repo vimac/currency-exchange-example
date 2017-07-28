@@ -4,7 +4,7 @@
 namespace CurrencyExchangeExample\Playground;
 
 
-use PHPUnit\Runner\Exception;
+use Exception;
 
 class ExceptionProducer
 {
@@ -13,7 +13,17 @@ class ExceptionProducer
     {
         //do something
 
-        throw new Exception('hello', 1024);
+        throw new MyException1('hello', 1024);
     }
+
+}
+
+class MyException1 extends Exception
+{
+
+}
+
+class MyException2 extends Exception
+{
 
 }

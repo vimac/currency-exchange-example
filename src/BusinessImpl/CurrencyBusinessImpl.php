@@ -51,4 +51,8 @@ class CurrencyBusinessImpl extends Injectable
         return $toValue;
     }
 
+    public function append($name, $base)
+    {
+    }
+
 }

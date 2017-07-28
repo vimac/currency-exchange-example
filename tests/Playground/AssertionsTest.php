@@ -6,7 +6,7 @@ namespace CurrencyExchangeExample\Tests\Playground;
 
 use CurrencyExchangeExample\Playground\DivisionWorker;
 use CurrencyExchangeExample\Playground\ExceptionProducer;
-use PHPUnit\Exception;
+use Exception;
 use PHPUnit\Framework\Error\Error;
 use PHPUnit\Framework\TestCase;
 
@@ -47,12 +47,14 @@ class AssertionsTest extends TestCase
     }
 
     /**
-     * @expectedException \PHPUnit\Framework\Error\Warning
+     *
      */
     public function testError()
     {
         $worker = new DivisionWorker();
+        $this->expectException(\PHPUnit\Framework\Error\Notice::class);
         $actual = $worker->divide(10, 0);
+        $this->assertEquals(0, $actual);
     }
 
 }

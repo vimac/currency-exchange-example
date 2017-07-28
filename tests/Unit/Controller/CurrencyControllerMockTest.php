@@ -69,7 +69,6 @@ class CurrencyControllerMockTest extends TestCase
             ->method('getCurrencies')
             ->with()->willReturn($stubExpectReturn);
 
-
         $container = new Container();
         $container['currencyBizImpl'] = $mock;
 
